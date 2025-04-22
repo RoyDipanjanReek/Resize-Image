@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     if (
       !process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
       !process.env.CLOUDINARY_API_KEY ||
-      !process.env.CLOUDINARY_API_SECRET 
+      !process.env.CLOUDINARY_API_SECRET
     ) {
       return NextResponse.json(
         { error: "Cloudinary credential not configured" },
@@ -54,22 +54,20 @@ export async function POST(request: NextRequest) {
 
     const result = await new Promise<CloudinaryUploadResult>(
       (resolve, reject) => {
-          const uploadStream = cloudinary.uploader.upload_stream(
-              {
-                  resource_type: "video",
-                  folder: "video-uploads",
-                  transformation: [
-                      {quality: "auto", fetch_format: "mp4"},
-                  ]
-              },
-              (error, result) => {
-                  if(error) reject(error);
-                  else resolve(result as CloudinaryUploadResult);
-              }
-          )
-          uploadStream.end(buffer)
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            resource_type: "video",
+            folder: "video-uploads",
+            transformation: [{ quality: "auto", fetch_format: "mp4" }],
+          },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result as CloudinaryUploadResult);
+          }
+        );
+        uploadStream.end(buffer);
       }
-  )
+    );
     const video = await prisma.video.create({
       data: {
         title,
