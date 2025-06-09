@@ -67,30 +67,6 @@ export default function AppLayout({
               </Link>
             </div>
             <div className="flex-none flex items-center space-x-4">
-              {/* {user && (
-                  <>
-                    <div className="avatar">
-                      <div className="w-8 h-8 rounded-full">
-                        <img
-                          src={user.imageUrl}
-                          alt={
-                            user.username || user.emailAddresses[0].emailAddress
-                          }
-                        />
-                      </div>
-                    </div>
-                    <span className="text-sm truncate max-w-xs lg:max-w-md">
-                      {user.username || user.emailAddresses[0].emailAddress}
-                    </span>
-                    <button
-                      onClick={handleSignOut}
-                      className="btn btn-ghost btn-circle"
-                    >
-                      <LogOutIcon className="h-6 w-6" />
-                    </button>
-                  </>
-                )} */}
-
               <button
                 onClick={handleSignOut}
                 className="bg-red-500 flex gap-2 py-3 px-3 rounded-2xl hover:bg-red-400 hover:cursor-pointer"
